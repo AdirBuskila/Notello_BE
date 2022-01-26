@@ -5,7 +5,6 @@ const logger = require('../../services/logger.service')
 
 // GET LIST
 async function getBoards(req, res) {
-
     try {
         const Board = await boardService.query('boards')
         res.json(Board);

@@ -7,8 +7,10 @@ const gLabels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outd
 
 async function query(type) {
     try {
+        const criteria = {}
+            // await _buildCriteria(filterBy)
         const collection = await dbService.getCollection('board')
-        const boards = await collection.distinct(type)
+        const boards = await collection.find(criteria).toArray() || []
         return boards
     } catch (err) {
         logger.error('cannot find boards', err)
