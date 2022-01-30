@@ -6,6 +6,7 @@ const expressSession = require('express-session')
 const app = express()
 const http = require('http').createServer(app)
 
+
 // session setup
 const session = expressSession({
         secret: 'coding is amazing',
@@ -34,12 +35,14 @@ if (process.env.NODE_ENV === 'production') {
 const authRoutes = require('./api/auth/auth.routes')
 const userRoutes = require('./api/user/user.routes')
 const boardRoutes = require('./api/board/board.routes')
+const { connectSockets } = require('./services/socket.service')
 
 
 // routes
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/board', boardRoutes)
+connectSockets(http, session)
 
 
 app.get('/**', (req, res) => {
