@@ -83,7 +83,6 @@ async function _printSockets() {
     console.log(`Sockets: (count: ${sockets.length}):`)
     sockets.forEach(_printSocket)
 }
-
 function _printSocket(socket) {
     console.log(`Socket - socketId: ${socket.id} userId: ${socket.userId}`)
 }
