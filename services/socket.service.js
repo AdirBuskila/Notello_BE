@@ -14,12 +14,13 @@ function connectSockets(http, session) {
         socket.on('disconnect', socket => {
             console.log('Someone disconnected')
         })
-        socket.on('board-update', msg => {
-            // console.log('board-update', msg);
+        socket.on('board-update', board => {
+            console.log('board-update');
+            console.log(board._id);
             // emits to all sockets:
-            // gIo.emit('chat addMsg', msg)
-            // emits only to sockets in the same room
-            // gIo.to(socket.myTopic).emit('chat addMsg', msg)
+            gIo.emit('board-update', board)
+                // emits only to sockets in the same room
+                // gIo.to(socket.board._id).emit('board-update', board)
         })
     })
 }
