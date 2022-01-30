@@ -41,17 +41,59 @@ async function remove(boardId) {
 }
 
 async function add(board) {
+    // console.log('Hey Adir rulzzzzzzzz', board);
+    newBoard = {
+        "_id": ObjectId(),
+        "title": board.title,
+        "createdAt": new Date().getTime(),
+        "createdBy": board.createdBy,
+        "style": board.style,
+        labels: [{
+                "_id": ObjectId(),
+                name: 'QA',
+                bgc: '#F5DD29'
+            },
+            {
+                "_id": ObjectId(),
+                name: 'Done',
+                bgc: '#ff9f1a'
+            },
+            {
+                "_id": ObjectId(),
+                name: 'Important',
+                bgc: '#eb5a46'
+            },
+            {
+                "_id": ObjectId(),
+                name: 'Todo',
+                bgc: '#c377e0'
+            },
+
+            {
+                "_id": ObjectId(),
+                name: 'Development',
+                bgc: '#6EC2A9'
+            },
+            {
+                "_id": ObjectId(),
+                name: 'Critical',
+                bgc: '#29CCE5'
+            }
+        ],
+        "members": [board.createdBy],
+        "groups": [],
+        "activities": []
+    }
     try {
         const collection = await dbService.getCollection('board')
-        const addedBoard = await collection.insertOne(board)
-        return addedBoard
+        collection.insertOne(newBoard)
     } catch (err) {
         logger.error('cannot insert board', err)
         throw err
     }
 }
 async function update(board) {
-    console.log(board);
+    // console.log(board);
     try {
         var id = ObjectId(board._id)
         delete board._id

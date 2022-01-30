@@ -52,7 +52,6 @@ async function addBoard(req, res) {
 async function updateBoard(req, res) {
     try {
         const board = req.body;
-        console.log('BOARD IN BE', board.groups[4]);
         const updatedBoard = await boardService.update(board)
         res.json(updatedBoard)
     } catch (err) {
