@@ -14,13 +14,23 @@ function connectSockets(http, session) {
         socket.on('disconnect', socket => {
             console.log('Someone disconnected')
         })
+        socket.on('view board', boardId => {
+            if (socket.view === boardId) return;
+            if (socket.view) {
+                socket.leave(socket.view)
+            }
+            socket.join(boardId)
+            console.log(socket.id, 'joined to ', boardId)
+            socket.view = boardId
+        })
         socket.on('board-update', board => {
-            console.log('board-update');
-            console.log(board._id);
+            // console.log(board._id);
+            // console.log(board.groups);
+
             // emits to all sockets:
-            gIo.emit('board-update', board)
-                // emits only to sockets in the same room
-                // gIo.to(socket.board._id).emit('board-update', board)
+            // gIo.emit('board-update', board)
+            // emits only to sockets in the same room
+            gIo.to(board._id).emit('board-update', board)
         })
     })
 }
