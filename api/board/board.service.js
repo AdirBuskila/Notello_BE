@@ -3,9 +3,9 @@ const logger = require('../../services/logger.service')
 const ObjectId = require('mongodb').ObjectId
 
 
-const gLabels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 
-async function query(type) {
+
+async function query() {
     try {
         const criteria = {}
             // await _buildCriteria(filterBy)
@@ -41,7 +41,6 @@ async function remove(boardId) {
 }
 
 async function add(board) {
-    // console.log('Hey Adir rulzzzzzzzz', board);
     newBoard = {
         "_id": ObjectId(),
         "title": board.title,
@@ -93,7 +92,6 @@ async function add(board) {
     }
 }
 async function update(board) {
-    // console.log(board);
     try {
         var id = ObjectId(board._id)
         delete board._id

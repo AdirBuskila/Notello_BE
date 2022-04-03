@@ -9,11 +9,11 @@ const router = express.Router()
 
 router.get('/', log, getBoards)
     // router.get('/members', log, getBoards)
-router.get('/labels', getAllLabels)
+    // router.get('/labels', getAllLabels)
 router.get('/:id', getBoardById)
 router.post('/', addBoard)
 router.put('/:id', updateBoard)
     // router.put('/:id', requireAuth, requireAdmin, updateBoard)
-router.delete('/:id', requireAuth, requireAdmin, removeBoard)
+    // router.delete('/:id', requireAuth, requireAdmin, removeBoard)
 
 module.exports = router

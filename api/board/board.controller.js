@@ -72,15 +72,15 @@ async function removeBoard(req, res) {
         res.status(500).send({ err: 'Failed to remove Board' })
     }
 }
-async function getAllLabels(req, res) {
-    try {
-        const labels = await boardService.getLabels()
-        res.send(labels)
-    } catch (err) {
-        logger.error('Failed to get Labels', err)
-        res.status(500).send({ err: 'Failed to get Labels' })
-    }
-}
+// async function getAllLabels(req, res) {
+//     try {
+//         const labels = await boardService.getLabels()
+//         res.send(labels)
+//     } catch (err) {
+//         logger.error('Failed to get Labels', err)
+//         res.status(500).send({ err: 'Failed to get Labels' })
+//     }
+// }
 
 
 module.exports = {
@@ -89,6 +89,6 @@ module.exports = {
     addBoard,
     updateBoard,
     removeBoard,
-    getAllLabels,
+    // getAllLabels,
     getWorkSpaceMembers
 }
